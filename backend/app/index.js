@@ -45,3 +45,20 @@ app.post('/api/bookings', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// API endpoint to fetch a single booking by ID
+app.get('/api/bookings/:id', async (req, res) => {
+  const bookingId = req.params.id;
+  const selectQuery = 'SELECT * FROM bookings WHERE id = ?';
+
+  try {
+    const [rows] = await pool.query(selectQuery, [bookingId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+    res.status(200).json(rows[0]);
+  } catch (error) {
+    console.error('Error fetching booking:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
