@@ -15,13 +15,16 @@ const Home = async () => {
     <div>
       <h1>Bookings</h1>
       <ul>
-        {bookings.map((booking: any) => (
-          <li key={booking.id}>
-            <Link href={`/booking/${booking.id}`}>
-              A Booking on {booking.date} starting at {booking.start_time}
-            </Link>
-          </li>
-        ))}
+        {bookings.map((booking: any) => {
+          const formattedDate = new Date(booking.date).toLocaleDateString(); // Përpunimi i datës
+          return (
+            <li key={booking.id}>
+              <Link href={`/booking/${booking.id}`}>
+                A Booking on {formattedDate} starting at {booking.start_time}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
