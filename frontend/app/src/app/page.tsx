@@ -8,7 +8,7 @@ async function getBookings() {
   return res.json();
 }
 
-const Home: React.FC = async () => {
+const Home = async () => {
   const bookings = await getBookings();
 
   return (
