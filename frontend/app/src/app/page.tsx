@@ -14,6 +14,9 @@ const Home = async () => {
   return (
     <div>
       <h1>Bookings</h1>
+      <Link href="/new-booking">
+        <button>Create New Booking</button>
+      </Link>
       <ul>
         {bookings.map((booking: any) => {
           const formattedDate = new Date(booking.date).toLocaleDateString(); // Përpunimi i datës
