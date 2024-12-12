@@ -22,7 +22,7 @@ const NewBooking = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://host.docker.internal:5000/api/bookings", {
+      const res = await fetch("http://localhost:5000/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

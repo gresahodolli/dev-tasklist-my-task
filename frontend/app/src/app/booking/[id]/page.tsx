@@ -10,7 +10,13 @@ type Booking = {
 };
 
 async function getBooking(id: string) {
-  const res = await fetch(`http://host.docker.internal:5000/api/bookings/${id}`, { cache: 'no-store' });
+  const res = await fetch(`http://host.docker.internal:5000/api/bookings/${id}`, 
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!res.ok) {
     throw new Error('Failed to fetch booking details');
   }
