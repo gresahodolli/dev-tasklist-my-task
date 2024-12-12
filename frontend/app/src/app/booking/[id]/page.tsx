@@ -19,16 +19,33 @@ async function getBooking(id: string) {
 
 const BookingDetails = async ({ params }: { params: { id: string } }) => {
   const booking: Booking = await getBooking(params.id);
-  const formattedDate = new Date(booking.date).toLocaleDateString(); // Përpunimi i datës
+  const formattedDate = new Date(booking.date).toLocaleDateString();
 
   return (
-    <div>
-      <h1>Booking Details</h1>
-      <p>
-        This Booking is with {booking.doctor_name} for {booking.service} on {formattedDate} and it ends on{' '}
-        {booking.end_time}.
-      </p>
-      <BackButton />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-10 px-4">
+      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Booking Details</h1>
+        <div className="space-y-4">
+          <p className="text-lg text-gray-700">
+            <span className="font-medium text-gray-900">Service:</span> {booking.service}
+          </p>
+          <p className="text-lg text-gray-700">
+            <span className="font-medium text-gray-900">Doctor:</span> {booking.doctor_name}
+          </p>
+          <p className="text-lg text-gray-700">
+            <span className="font-medium text-gray-900">Date:</span> {formattedDate}
+          </p>
+          <p className="text-lg text-gray-700">
+            <span className="font-medium text-gray-900">Start Time:</span> {booking.start_time}
+          </p>
+          <p className="text-lg text-gray-700">
+            <span className="font-medium text-gray-900">End Time:</span> {booking.end_time}
+          </p>
+        </div>
+        <div className="mt-6">
+          <BackButton />
+        </div>
+      </div>
     </div>
   );
 };
