@@ -31,7 +31,8 @@ const NewBooking = () => {
       });
 
       if (res.ok) {
-        router.push("/"); // Kthehu në faqen kryesore nëse ka sukses
+        router.push("/"); 
+        router.refresh(); 
       } else {
         const errorData = await res.json();
         setErrors(errorData.errors || ["Failed to create booking"]);
