@@ -11,7 +11,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-        - ./backend/scripts:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql # Data storage volume
+      - ./backend/scripts:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -33,6 +34,7 @@ services:
       - ./frontend:/usr/src/app
     depends_on:
       - mysql
+
   backend:
     build:
       context: ./backend
@@ -45,3 +47,6 @@ services:
       MYSQL_USER: my_user
       MYSQL_PASSWORD: my_password
       MYSQL_DATABASE: my_database
+
+volumes:
+  mysql_data:
